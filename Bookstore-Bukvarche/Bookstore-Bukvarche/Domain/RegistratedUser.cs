@@ -8,5 +8,8 @@ namespace Bookstore_Bukvarche.Domain
 {
     public class RegistratedUser: IdentityUser
     {
+        public string FisrtName { get; set; }
+
+        public string LastName { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 using Bookstore_Bukvarche.Data;
 using Bookstore_Bukvarche.Domain;
+using Bookstore_Bukvarche.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -37,7 +38,9 @@ namespace Bookstore_Bukvarche
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
             services.AddControllersWithViews();
+            services.AddRazorPages();
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequireDigit = false;
@@ -52,6 +55,7 @@ namespace Bookstore_Bukvarche
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.PrepareDatabase();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

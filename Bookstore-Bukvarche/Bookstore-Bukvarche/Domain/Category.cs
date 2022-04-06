@@ -8,11 +8,16 @@ namespace Bookstore_Bukvarche.Domain
 {
     public class Category
     {
+        public Category()
+        {
+            this.Products = new HashSet<Product>();
+        }
         [Key]
         public int Id { get; set; }
 
         [Required]
         [Display(Name = "Name")]
         public string Name { get; set; }
+        public ICollection<Product> Products { get; set; }
     }
 }

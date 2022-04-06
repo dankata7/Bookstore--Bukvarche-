@@ -28,7 +28,16 @@ namespace Bookstore_Bukvarche.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult AboutUs()
+        {
+            return View();
+        }
+        public IActionResult Contacts()
+        {
+            return View();
+        }
+
+            [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

@@ -1,4 +1,5 @@
-﻿using Bookstore_Bukvarche.Domain;
+﻿using Bookstore_Bukvarche.Data;
+using Bookstore_Bukvarche.Domain;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,9 +20,28 @@ namespace Bookstore_Bukvarche.Infrastructure
 
             await RoleSeeder(services);
             await SeedAdministrator(services);
+            var data = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            SeedCategories(data);
 
 
             return app;
+        }
+
+        private static void SeedCategories(ApplicationDbContext data)
+        {
+            if (data.Categories.Any())
+            {
+                return;
+            }
+            data.Categories.AddRange(new[]
+            {
+                new Category {Name="Knigi"},
+                new Category {Name="Uchebnici"},
+                new Category {Name="Cocer spaniol"},
+                new Category {Name="Dachshund"},
+                new Category {Name="Doberman"},
+            });
+            data.SaveChanges();
         }
 
         private static async Task RoleSeeder(IServiceProvider serviceProvider)

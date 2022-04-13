@@ -35,11 +35,11 @@ namespace Bookstore_Bukvarche.Infrastructure
             }
             data.Categories.AddRange(new[]
             {
-                new Category {Name="Knigi"},
-                new Category {Name="Uchebnici"},
-                new Category {Name="Cocer spaniol"},
-                new Category {Name="Dachshund"},
-                new Category {Name="Doberman"},
+                new Category {Name="Книги"},
+                new Category {Name="Учебници"},
+                new Category {Name="Химикалки"},
+                new Category {Name="Тетрадки"},
+                new Category {Name="Ученически пособия"},
             });
             data.SaveChanges();
         }

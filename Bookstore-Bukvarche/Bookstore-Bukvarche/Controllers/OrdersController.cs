@@ -151,6 +151,15 @@ namespace Bookstore_Bukvarche.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        public async Task<IActionResult> Cart()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Cart(int id)
+        {
+            return View();
+        }
 
         private bool OrderExists(int id)
         {

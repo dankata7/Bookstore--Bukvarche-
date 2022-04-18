@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Bookstore_Bukvarche.Data;
 using Bookstore_Bukvarche.Domain;
+using static Bookstore_Bukvarche.Constants;
 
 namespace Bookstore_Bukvarche.Controllers
 {
@@ -60,6 +61,7 @@ namespace Bookstore_Bukvarche.Controllers
             {
                 _context.Add(author);
                 await _context.SaveChangesAsync();
+                TempData[GlobalMessageKey] = "Author create successfully.";
                 return RedirectToAction(nameof(Index));
             }
             return View(author);

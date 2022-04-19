@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Bookstore_Bukvarche.Data;
 using Bookstore_Bukvarche.Domain;
+using System.Security.Claims;
 
 namespace Bookstore_Bukvarche.Controllers
 {
@@ -22,8 +23,17 @@ namespace Bookstore_Bukvarche.Controllers
         // GET: Orders
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Orders.Include(o => o.Product);
+            var applicationDbContext = _context.Orders.Include(o => o.Product).Include(o => o.User);
             return View(await applicationDbContext.ToListAsync());
+        }
+
+        public async Task<IActionResult> MyOrders()
+        {
+            string currentUserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var applicationDbContext = _context.Orders.Where(x => x.UserId == currentUserId).Include(o => o.Product).Include(o => o.User);
+            return View(await applicationDbContext.ToListAsync());
+
+
         }
 
         // GET: Orders/Details/5
@@ -36,7 +46,8 @@ namespace Bookstore_Bukvarche.Controllers
 
             var order = await _context.Orders
                 .Include(o => o.Product)
-                .FirstOrDefaultAsync(m => m.UserId == id);
+                .Include(o => o.User)
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (order == null)
             {
                 return NotFound();
@@ -49,6 +60,7 @@ namespace Bookstore_Bukvarche.Controllers
         public IActionResult Create()
         {
             ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Description");
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
             return View();
         }
 
@@ -57,7 +69,7 @@ namespace Bookstore_Bukvarche.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserId,ProductId,Createdon,CountOfProduct")] Order order)
+        public async Task<IActionResult> Create([Bind("Id,UserId,ProductId,Createdon,CountOfProduct")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -66,6 +78,7 @@ namespace Bookstore_Bukvarche.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Description", order.ProductId);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", order.UserId);
             return View(order);
         }
 
@@ -83,6 +96,7 @@ namespace Bookstore_Bukvarche.Controllers
                 return NotFound();
             }
             ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Description", order.ProductId);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", order.UserId);
             return View(order);
         }
 
@@ -91,9 +105,9 @@ namespace Bookstore_Bukvarche.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UserId,ProductId,Createdon,CountOfProduct")] Order order)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,ProductId,Createdon,CountOfProduct")] Order order)
         {
-            if (id != order.UserId)
+            if (id != order.Id)
             {
                 return NotFound();
             }
@@ -107,7 +121,7 @@ namespace Bookstore_Bukvarche.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!OrderExists(order.UserId))
+                    if (!OrderExists(order.Id))
                     {
                         return NotFound();
                     }
@@ -119,6 +133,7 @@ namespace Bookstore_Bukvarche.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Description", order.ProductId);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", order.UserId);
             return View(order);
         }
 
@@ -132,7 +147,8 @@ namespace Bookstore_Bukvarche.Controllers
 
             var order = await _context.Orders
                 .Include(o => o.Product)
-                .FirstOrDefaultAsync(m => m.UserId == id);
+                .Include(o => o.User)
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (order == null)
             {
                 return NotFound();
@@ -151,19 +167,10 @@ namespace Bookstore_Bukvarche.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        public async Task<IActionResult> Cart()
-        {
-            return View();
-        }
-        [HttpPost]
-        public async Task<IActionResult> Cart(int id)
-        {
-            return View();
-        }
 
         private bool OrderExists(int id)
         {
-            return _context.Orders.Any(e => e.UserId == id);
+            return _context.Orders.Any(e => e.Id == id);
         }
     }
 }

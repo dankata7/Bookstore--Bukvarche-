@@ -9,7 +9,8 @@ namespace Bookstore_Bukvarche.Domain
     public class Order
     {
         [Key]
-        public int UserId { get; set; }
+        public int Id { get; set; }
+        public string UserId { get; set; }
         public virtual RegistratedUser User { get; set; }
 
         [Required]

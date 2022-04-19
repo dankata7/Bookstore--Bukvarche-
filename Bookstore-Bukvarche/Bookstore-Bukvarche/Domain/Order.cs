@@ -20,7 +20,7 @@ namespace Bookstore_Bukvarche.Domain
 
         [Required]
         [Display(Name = "Createdon")]
-        public int Createdon { get; set; }
+        public DateTime Createdon { get; set; }
 
         [Required]
         [MaxLength(10)]

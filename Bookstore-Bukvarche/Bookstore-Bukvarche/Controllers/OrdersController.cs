@@ -73,6 +73,9 @@ namespace Bookstore_Bukvarche.Controllers
         {
             if (ModelState.IsValid)
             {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                order.UserId = userId;
+                order.Createdon = DateTime.Now;
                 _context.Add(order);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

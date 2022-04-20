@@ -1,12 +1,30 @@
 ﻿@model IEnumerable<Bookstore_Bukvarche.Domain.Product>
 
-@{ ViewData["Title"] = "Index"; }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        main {
+            border-width: 7px;
+            border-color: cornflowerblue;
+            border-style: solid;
+        }
+        
 
-<img src="https://cdn.ttgtmedia.com/rms/onlineimages/books_g1016740944.jpg" />
+        body {
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+</html>
+<div class="text-center">
+<img src="https://www.shift4shop.com/2015/images/build-bookstore-ecommerce/build-ecommerce-banner.png" />
+</div>
 <h1>Книги</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Създай книга</a>
 </p>
 <table class="table">
     <thead>

@@ -1,11 +1,101 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-<p>
-    Книжарница Букварче
-    гр. Перник, ул. „Райко Даскалов“ 4/2 (под Пожарната), 
-    тел. 076/604 757 или 0883/309 902
-</p>
-<img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/201909/contact-details-3381225_1280.jpeg?524JGkJvIBQ1imnKfpn2djsEHFX06JK7&size=1200:675" />
+﻿<!--Section: Contact v.2-->
+<section class="mb-4">
+    <style>
+        body {
+            background-color: aquamarine;
+        }
+    </style>
+    <!--Section heading-->
+    <h2 class="h1-responsive font-weight-bold text-center my-4">Контакти</h2>
+    <!--Section description-->
+    <p class="text-center w-responsive mx-auto mb-5">
+        Имате въпроси? Пишете ни на имейла или позвънете на номера тел.0882711394. Ще откликнем на вашите въпроси по най-бързия начин!
+    </p>
+
+    <div class="row">
+
+        <!--Grid column-->
+        <div class="col-md-9 mb-md-0 mb-5">
+            <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+
+                <!--Grid row-->
+                <div class="row">
+
+                    <!--Grid column-->
+                    <div class="col-md-6">
+                        <div class="md-form mb-0">
+                            <input type="text" id="name" name="name" class="form-control">
+                            <label for="name" class="">Вашето име</label>
+                        </div>
+                    </div>
+                    <!--Grid column-->
+                    <!--Grid column-->
+                    <div class="col-md-6">
+                        <div class="md-form mb-0">
+                            <input type="text" id="email" name="email" class="form-control">
+                            <label for="email" class="">Вашият email</label>
+                        </div>
+                    </div>
+                    <!--Grid column-->
+
+                </div>
+                <!--Grid row-->
+                <!--Grid row-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="md-form mb-0">
+                            <input type="text" id="subject" name="subject" class="form-control">
+                            <label for="subject" class="">Тема</label>
+                        </div>
+                    </div>
+                </div>
+                <!--Grid row-->
+                <!--Grid row-->
+                <div class="row">
+
+                    <!--Grid column-->
+                    <div class="col-md-12">
+
+                        <div class="md-form">
+                            <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea"></textarea>
+                            <label for="message">Вашите въпроси</label>
+                        </div>
+
+                    </div>
+                </div>
+                <!--Grid row-->
+
+            </form>
+
+            <div class="text-center text-md-left">
+                <a class="btn btn-primary" onclick="document.getElementById('contact-form').submit();">Send</a>
+            </div>
+            <div class="status"></div>
+        </div>
+        <!--Grid column-->
+        <!--Grid column-->
+        <div class="col-md-3 text-center">
+            <ul class="list-unstyled mb-0">
+                <li>
+                    <i class="fas fa-map-marker-alt fa-2x"></i>
+                    <p>Перник, Улица "Райко Даскалов"</p>
+                </li>
+
+                <li>
+                    <i class="fas fa-phone mt-4 fa-2x"></i>
+                    <p>+ 365 882 711 394</p>
+                </li>
+
+                <li>
+                    <i class="fas fa-envelope mt-4 fa-2x"></i>
+                    <p>bookstore-bukvarche.com</p>
+                </li>
+            </ul>
+        </div>
+        <!--Grid column-->
+
+    </div>
+
+</section>
+<!--Section: Contact v.2-->
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d734.1937038264208!2d23.027820829232027!3d42.602520985841636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x1ff705cafa44a322!2zNDLCsDM2JzA5LjEiTiAyM8KwMDEnNDIuMSJF!5e0!3m2!1sbg!2sbg!4v1650452337161!5m2!1sbg!2sbg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>

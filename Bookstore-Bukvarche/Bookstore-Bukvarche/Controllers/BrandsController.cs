@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Bookstore_Bukvarche.Data;
 using Bookstore_Bukvarche.Domain;
-
+using static Bookstore_Bukvarche.Constants;
 namespace Bookstore_Bukvarche.Controllers
 {
     public class BrandsController : Controller
@@ -60,6 +60,7 @@ namespace Bookstore_Bukvarche.Controllers
             {
                 _context.Add(brand);
                 await _context.SaveChangesAsync();
+                TempData[GlobalMessageKey] = "Brand create successfully.";
                 return RedirectToAction(nameof(Index));
             }
             return View(brand);

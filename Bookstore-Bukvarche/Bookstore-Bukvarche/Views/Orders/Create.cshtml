@@ -5,18 +5,23 @@
 }
 
 <h1>Create</h1>
+<style>
+    body {
+        background-color: skyblue;
+    }
+</style>
 
 <h4>Order</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
-            
+
             <div class="form-group">
                 <label asp-for="ProductId" class="control-label"></label>
-                <select asp-for="ProductId" class ="form-control" asp-items="ViewBag.ProductId"></select>
+                <select asp-for="ProductId" class="form-control" asp-items="ViewBag.ProductId"></select>
             </div>
-            
+
             <div class="form-group">
                 <label asp-for="CountOfProduct" class="control-label"></label>
                 <input asp-for="CountOfProduct" class="form-control" />
